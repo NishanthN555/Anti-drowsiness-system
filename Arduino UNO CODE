@@ -1,0 +1,53 @@
+// C++ code
+//
+#include <LiquidCrystal.h>
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+int i=1,val=0;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  lcd.begin(16, 2);
+
+}
+void loop()
+{
+// set the cursor to column 0, line 1
+  // (note: line 1 is the second row, since counting begins with 0):
+  if(Serial.available())
+  {
+  val= Serial.read();
+   if(val==0)
+  {
+  lcd.setCursor(0, 0);
+  lcd.print("DRIVER IN DROWSY");
+  digitalWrite(8,1);
+  digitalWrite(9,1);
+  delay(1000);
+  }
+  
+ else
+   
+ {
+  lcd.setCursor(0, 0);
+  lcd.print("FOCUS ON DRIVING");
+  //delay(1000);
+  digitalWrite(8,0);
+  digitalWrite(9,0);
+  delay(1000);
+   
+ }
+    
+  }
+  
+  
+   
+   
+   
+   
+ 
+  
+}
